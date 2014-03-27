@@ -142,9 +142,15 @@ class Bot
          * @var Storage $cacheStorage
          */
         list ($originalStorage, $cacheStorage) = $this->createStorage();
-        $messages = $cacheStorage->read();
+
+        $messages = array();
+        if (!$cacheStorage) {
+            $messages = $cacheStorage->read();
+        }
         if (empty($messages)) {
-            $messages = $originalStorage->read();
+            if ($originalStorage) {
+                $messages = $originalStorage->read();
+            }
             if (is_array($messages)) {
                 shuffle($messages);
             }
