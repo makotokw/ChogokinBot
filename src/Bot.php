@@ -120,6 +120,20 @@ class Bot
     /**
      *
      */
+    public function clearDump()
+    {
+        /**
+         * @var Storage $cacheStorage
+         */
+        list (, $cacheStorage) = $this->createStorage();
+        if ($cacheStorage) {
+            $cacheStorage->dump();
+        }
+    }
+
+    /**
+     *
+     */
     public function clearCache()
     {
         /**
