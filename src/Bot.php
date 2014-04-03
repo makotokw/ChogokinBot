@@ -158,7 +158,7 @@ class Bot
         list ($originalStorage, $cacheStorage) = $this->createStorage();
 
         $messages = array();
-        if (!$cacheStorage) {
+        if ($cacheStorage) {
             $messages = $cacheStorage->read();
         }
         if (empty($messages)) {
@@ -180,7 +180,9 @@ class Bot
             }
         } while (!is_null($status) && empty($status));
 
-        $cacheStorage->write($messages);
+        if ($cacheStorage) {
+            $cacheStorage->write($messages);
+        }
 
         $twitter = new Twitter();
         $twitter->oAuth(
