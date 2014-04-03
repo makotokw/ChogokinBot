@@ -171,7 +171,11 @@ class Bot
         }
 
         if (empty($messages)) {
-            throw new \Exception(sprintf('Load Error: %s%s.txt or .xml', $this->dataDir, strtolower($this->screenName)));
+            throw new \Exception(sprintf(
+                'Load Error: %s%s.txt or .xml',
+                $this->dataDir,
+                strtolower($this->screenName)
+            ));
         }
 
         do {
