@@ -1,7 +1,7 @@
 {
-    "name": "makotokw/twientbot",
+    "name": "makotokw/ChogokinBot",
     "keywords": ["twitter", "bot"],
-    "homepage": "http://github.com/makotokw/php-twientbot",
+    "homepage": "http://github.com/makotokw/ChogokinBot",
     "license": "MIT",
     "authors": [
         {
