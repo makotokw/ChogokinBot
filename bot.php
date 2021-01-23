@@ -45,7 +45,7 @@ try {
                 throw new Exception("Usage: bot.php cache:dump screen-name");
             }
             $bot = createBot($screenName);
-            $bot->clearDump();
+            $bot->dumpCache();
             break;
 
         case 'cache:clear':

@@ -117,7 +117,7 @@ class Bot
     /**
      *
      */
-    public function clearDump()
+    public function dumpCache()
     {
         /**
          * @var Storage $cacheStorage

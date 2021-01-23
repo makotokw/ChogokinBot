@@ -3,23 +3,30 @@
 namespace Makotokw\TwientBot\Storage;
 
 use DomDocument;
+use Exception;
 use SimpleXMLElement;
 
 class XmlFileStorage extends TextFileStorage
 {
+    /**
+     * @param $path
+     * @return array
+     * @throws Exception
+     */
     protected function readFormFile($path)
     {
         $messages = [];
         $xml = new SimpleXMLElement(file_get_contents($path));
-        if ($result = $xml->xpath('/list/item')) {
-            while (list(, $node) = each($result)) {
-                $text = trim((string)$node);
-                if (!empty($text)) {
-                    $messages[] = $text;
-                }
+        $result = $xml->xpath('/list/item');
+        if (!$result) {
+            throw new Exception('invalid xml format: ' . $path);
+        }
+        foreach ($result as $node) {
+            $text = trim((string)$node);
+            if (!empty($text)) {
+                $messages[] = $text;
             }
         }
-
         return $messages;
     }
 
