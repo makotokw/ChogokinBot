@@ -1,7 +1,8 @@
 <?php
+
 require_once __DIR__ . '/../bootstrap.php';
 
-use Twient\Twitter\V1dot1 as Twitter;
+use Makotokw\Twient\Twitter\V1dot1 as Twitter;
 
 try {
     $flags = new donatj\Flags();
@@ -11,7 +12,7 @@ try {
     $twitter = new Twitter();
     $twitter->oAuth(APP_CONSUMER_KEY, APP_CONSUMER_SECRET, USER_TOKEN, USER_SECRET);
 
-    $messages = array();
+    $messages = [];
 
     // https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline
     $maxId = null;
@@ -19,15 +20,14 @@ try {
 
     $loopCount = 0;
 
-    // Requests per rate limit window	180/user, 300/app in 15 minutes
+    // Requests per rate limit window 180/user, 300/app in 15 minutes
     $maxLoopCount = 180;
 
     while ($loopCount < $maxLoopCount) {
-
-        $params = array(
+        $params = [
             'screen_name' => $screenName,
             'count'       => $numberOfTweets,
-        );
+        ];
         if (isset($maxId)) {
             $params['max-id'] = $maxId;
         }
@@ -58,7 +58,6 @@ try {
         fwrite($fh, $m . PHP_EOL);
     }
     fclose($fh);
-
 } catch (Exception $e) {
     echo $e . PHP_EOL;
 }

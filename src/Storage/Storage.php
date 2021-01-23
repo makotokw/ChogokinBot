@@ -1,10 +1,7 @@
 <?php
+
 namespace Makotokw\TwientBot\Storage;
 
-/**
- * Class Storage
- * @package Makotokw\TwientBot\Storage
- */
 abstract class Storage
 {
     /**

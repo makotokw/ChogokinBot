@@ -1,17 +1,14 @@
 <?php
+
 namespace Makotokw\TwientBot;
 
-use Twient\Twitter\V1dot1 as Twitter;
-
+use Exception;
+use Makotokw\Twient\Twitter\V1dot1 as Twitter;
+use Makotokw\TwientBot\Storage\RedisStorage;
 use Makotokw\TwientBot\Storage\Storage;
 use Makotokw\TwientBot\Storage\TextFileStorage;
 use Makotokw\TwientBot\Storage\XmlFileStorage;
-use Makotokw\TwientBot\Storage\RedisStorage;
 
-/**
- * Class Bot
- * @package Makotokw\TwientBot
- */
 class Bot
 {
     /**
@@ -102,17 +99,17 @@ class Bot
 
         $baseFilename = $this->dataDir . strtolower($this->screenName);
         if (file_exists($baseFilename . '.xml')) {
-            return array(
+            return [
                 new XmlFileStorage($baseFilename . '.xml'),
                 isset($redisStorage) ? $redisStorage : new XmlFileStorage($baseFilename . '.xml.cached')
-            );
+            ];
         }
         $baseFilename = $this->dataDir . strtolower($this->screenName);
         if (file_exists($baseFilename . '.txt')) {
-            return array(
+            return [
                 new TextFileStorage($baseFilename . '.txt'),
                 isset($redisStorage) ? $redisStorage : new TextFileStorage($baseFilename . '.txt.cached')
-            );
+            ];
         }
         return false;
     }
@@ -147,7 +144,7 @@ class Bot
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function randomPost()
     {
@@ -157,7 +154,7 @@ class Bot
          */
         list ($originalStorage, $cacheStorage) = $this->createStorage();
 
-        $messages = array();
+        $messages = [];
         if ($cacheStorage) {
             $messages = $cacheStorage->read();
         }
@@ -171,7 +168,7 @@ class Bot
         }
 
         if (empty($messages)) {
-            throw new \Exception(sprintf(
+            throw new Exception(sprintf(
                 'Load Error: %s%s.txt or .xml',
                 $this->dataDir,
                 strtolower($this->screenName)

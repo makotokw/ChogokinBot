@@ -1,22 +1,25 @@
 <?php
+
 $loader = require_once __DIR__ . '/vendor/autoload.php';
 
-foreach (array(
-             'APP_CONSUMER_KEY',
-             'APP_CONSUMER_SECRET',
-             'USER_TOKEN',
-             'USER_SECRET'
-         ) as $key) {
+foreach (
+    [
+        'APP_CONSUMER_KEY',
+        'APP_CONSUMER_SECRET',
+        'USER_TOKEN',
+        'USER_SECRET'
+    ] as $key
+) {
     if (!defined($key)) {
         define($key, getenv($key));
     }
 }
 
 if (empty(APP_CONSUMER_KEY)) {
-    die ('APP_CONSUMER_KEY is undefined');
+    die('APP_CONSUMER_KEY is undefined');
 }
 if (empty(APP_CONSUMER_SECRET)) {
-    die ('APP_CONSUMER_SECRET is undefined');
+    die('APP_CONSUMER_SECRET is undefined');
 }
 
 if (!defined('REDIS_URL')) {

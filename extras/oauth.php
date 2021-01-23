@@ -1,7 +1,8 @@
 <?php
+
 require_once __DIR__ . '/../bootstrap.php';
 
-use Twient\Twitter\V1dot1 as Twitter;
+use Makotokw\Twient\Twitter\V1dot1 as Twitter;
 
 try {
     $twitter = new Twitter();
@@ -17,7 +18,6 @@ try {
     $token = $oauth->getAccessToken($pin);
     echo 'Your token is "' . $token['oauth_token'] . '"' . PHP_EOL;
     echo 'Your secret token is "' . $token['oauth_token_secret'] . '"' . PHP_EOL;
-
 } catch (Exception $e) {
     echo $e . PHP_EOL;
 }

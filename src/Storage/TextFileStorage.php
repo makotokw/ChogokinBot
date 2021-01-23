@@ -1,4 +1,5 @@
 <?php
+
 namespace Makotokw\TwientBot\Storage;
 
 class TextFileStorage extends Storage
@@ -40,6 +41,6 @@ class TextFileStorage extends Storage
 
     public function clear()
     {
-        return $this->writeToFile($this->path, array());
+        return $this->writeToFile($this->path, []);
     }
 }

@@ -1,5 +1,8 @@
 <?php
+
 namespace Makotokw\TwientBot\Storage;
+
+use Redis;
 
 class RedisStorage extends Storage
 {
@@ -24,7 +27,7 @@ class RedisStorage extends Storage
     protected $key;
 
     /**
-     * @var \Redis
+     * @var Redis
      */
     protected $redis;
 
@@ -47,7 +50,7 @@ class RedisStorage extends Storage
     {
         $ret = false;
         if (class_exists('Redis')) {
-            $this->redis = new \Redis();
+            $this->redis = new Redis();
             if ($this->redis->connect($this->host, $this->port)) {
                 if (empty($this->password)) {
                     $ret = true;

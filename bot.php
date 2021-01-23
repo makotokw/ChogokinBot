@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/bootstrap.php';
 
 use Makotokw\TwientBot\Bot;
@@ -16,7 +17,7 @@ try {
         case 'post':
             $screenName = $flags->arg(1);
             if (empty($screenName)) {
-                throw new \Exception("Usage: bot.php tweet screen-name");
+                throw new Exception("Usage: bot.php tweet screen-name");
             }
             $bot = createBot($screenName);
 
@@ -41,7 +42,7 @@ try {
         case 'cache:dump':
             $screenName = $flags->arg(1);
             if (empty($screenName)) {
-                throw new \Exception("Usage: bot.php cache:dump screen-name");
+                throw new Exception("Usage: bot.php cache:dump screen-name");
             }
             $bot = createBot($screenName);
             $bot->clearDump();
@@ -50,7 +51,7 @@ try {
         case 'cache:clear':
             $screenName = $flags->arg(1);
             if (empty($screenName)) {
-                throw new \Exception("Usage: bot.php cache:clear screen-name");
+                throw new Exception("Usage: bot.php cache:clear screen-name");
             }
             $bot = createBot($screenName);
             $bot->clearCache();
@@ -60,6 +61,11 @@ try {
     echo $e->getMessage() . PHP_EOL;
 }
 
+/**
+ * @param string $screenName
+ * @return Bot
+ * @throws Exception
+ */
 function createBot($screenName)
 {
     $upperScreenName = strtoupper($screenName);
@@ -67,7 +73,7 @@ function createBot($screenName)
     $userSecret = getenv($upperScreenName . '_SECRET');
 
     if (empty($userToken) || empty($userSecret)) {
-        throw new \Exception("undefined {$upperScreenName}_TOKEN or {$upperScreenName}_SECRET");
+        throw new Exception("undefined {$upperScreenName}_TOKEN or {$upperScreenName}_SECRET");
     }
 
     $bot = new Bot(APP_CONSUMER_KEY, APP_CONSUMER_SECRET);

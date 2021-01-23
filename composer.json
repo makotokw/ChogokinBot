@@ -1,5 +1,5 @@
 {
-    "name": "makotokw/ChogokinBot",
+    "name": "makotokw/chogokin-bot",
     "keywords": ["twitter", "bot"],
     "homepage": "http://github.com/makotokw/ChogokinBot",
     "license": "MIT",
@@ -10,13 +10,18 @@
             "homepage": "http://makotokw.com"
         }
     ],
-    "require": {
-        "php": ">=5.3.0",
-        "donatj/flags": "v1.0.2",
-        "makotokw/twient": "v0.5.1"
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
     },
-    "require-dev": {
-        "phpunit/phpunit": "3.7.*"
+    "require": {
+        "php": "^7.4.0",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-redis": "*",
+        "ext-simplexml": "*",
+        "donatj/flags": "^1.4",
+        "makotokw/twient": "v0.7"
     },
     "autoload": {
         "psr-4": {"Makotokw\\TwientBot\\": "src/"}
